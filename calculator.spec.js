@@ -140,4 +140,10 @@ describe('Calculator.js', function() {
     expect(calculator).toEqual(jasmine.objectContaining({total: 10}));
   });
 
+  //CustomMatcher
+  it('should test CustomMatcher', function() {
+    jasmine.addMatchers(CustomMatcher);
+    const calculator = new Calculator();
+    expect(calculator).toBeCalculator();
+  });
 });
