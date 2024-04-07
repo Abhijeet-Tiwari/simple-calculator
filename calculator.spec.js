@@ -85,4 +85,59 @@ describe('Calculator.js', function() {
     expect(calculator.constructor.name).toContain('Cal');
   });
 
+  //toBeNaN()
+  it('should toBeNaN matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    calculator.multiply('a');
+    expect(calculator.total).toBeNaN();
+  });
+
+  //toThrow() 
+  it('should toThrow matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    // expect(function() { calculator.divide(0) }).toThrow();
+    expect(function() { calculator.divide(0);}).toThrow(new Error('Number cannot be 0'));
+  });
+
+  //toThrowError() 
+  it('should toThrowError matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    expect(function() { calculator.divide(0) }).toThrowError();
+    expect(function() { calculator.divide(0) }).toThrowError(ArithmeticError, 'Number cannot be 0');
+    expect(function() { calculator.divide(0);}).toThrowError('Number cannot be 0');
+  });
+
+  //toMatch(regex) 
+  it('should toMatch matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    calculator.add(10);
+    expect(calculator.total).toMatch(/-?\d+/);
+  });
+
+  //jasmine.anything() 
+  it('should anything matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    expect(calculator.total).toEqual(jasmine.anything());
+  });
+
+  //jasmine.any(class) checks for types like class object, number, string
+  it('should any matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    expect(calculator).toEqual(jasmine.any(Object));
+    expect(calculator.total).toEqual(jasmine.any(Number));
+  });
+
+   //jasmine.objectContaining({key: value}) checks for object keys and values.
+   it('should objectContaining matcher', function() {
+    const calculator = new Calculator();
+    calculator.total = 10;
+    expect(calculator).toEqual(jasmine.objectContaining({total: 10}));
+  });
+
 });
