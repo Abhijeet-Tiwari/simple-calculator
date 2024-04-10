@@ -10,8 +10,7 @@ function calculate(event) {
     return;
   }
   const operator = inputValue.match(expression)[0];
-  console.log(numberA, numberB, operator);
-
+  
   const calculator = new Calculator();
   calculator.add(numberA);
   let result;
@@ -20,6 +19,7 @@ function calculate(event) {
     case '-': result = calculator.subtract(numberB); break;
     case '*': result = calculator.multiply(numberB); break;
     case '/': result = calculator.divide(numberB); break;
+    default: result = 'Opeartion not recognised!';
   }
 
   updateResult(result);
@@ -32,4 +32,4 @@ function updateResult(result) {
   }
 }
 
-document.getElementById("inputValue").addEventListener('change', calculate);
+document.getElementById("inputValue") && document.getElementById("inputValue").addEventListener('change', calculate);
