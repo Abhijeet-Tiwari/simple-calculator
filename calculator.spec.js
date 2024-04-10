@@ -4,12 +4,21 @@
 describe('Calculator.js', function() {
     //test cases
   describe('Calculator', function() { 
+    let calculator;
+    beforeEach(function() {
+      //executes before execution of each spec in the suite
+      calculator = new Calculator();
+    });
+
+    afterEach(function() {
+      //executes after execution of each spec in the suite
+      //used for clean up
+     });
 
     describe('add', function() {
       it('should add number to the total', function() { 
         //5+5 = 10
         // expect(5+5).toBe(10);
-        const calculator = new Calculator();
         expect(calculator.total).toBeFalsy();
         calculator.add(5);
         //expect total to be 5
@@ -18,8 +27,7 @@ describe('Calculator.js', function() {
     });
     
     describe('subtract', function() {
-      it('should subtract number from the total', function() { 
-        const calculator = new Calculator();
+      it('should subtract number from the total', function() {
         calculator.total = 30;
         calculator.subtract(5);
         //expect total to be 5
@@ -29,7 +37,6 @@ describe('Calculator.js', function() {
 
     describe('multiply', function() {
       it('should multiply number to the total', function() {
-        const calculator = new Calculator();
         calculator.total = 30;
         calculator.multiply(5);
         //expect total to be 5
@@ -38,8 +45,7 @@ describe('Calculator.js', function() {
     });
 
     describe('divide', function() {
-      it('should divide number from the total', function() { 
-        const calculator = new Calculator();
+      it('should divide number from the total', function() {
         calculator.total = 30;
         calculator.divide(6);
         //expect total to be 5
@@ -50,7 +56,6 @@ describe('Calculator.js', function() {
     describe('Jasmine Matchers', function() {
       // toBe() Matcher(===)
       it('should beBe Matcher', function() {
-        const calculator = new Calculator();
         // let person1 = {name: 'John', age:20};
         // let person2 = {name: 'John', age:20};
         // expect(person1).toBe(person2); // false  
@@ -75,8 +80,7 @@ describe('Calculator.js', function() {
       });
 
       //toBeUndefined & toBeDefined
-      it('should toBeUndefined and toBeDefined matcher', function() {
-        const calculator = new Calculator();
+      it('should toBeUndefined and toBeDefined matcher', function() {       
         expect(calculator.add).not.toBeUndefined();
         expect(calculator.subtract).not.toBeUndefined();
         expect(calculator.multiply).toBeDefined();
@@ -85,15 +89,14 @@ describe('Calculator.js', function() {
 
       // toBeNull
       it('should toBeNull matcher', function() {
-        const calculator = new Calculator();
+        
         calculator.total = null;
         expect(calculator.total).toBeNull();
       });
     
       // toBeContain 
       //expect(array/string).toContain(element/'substring');
-      it('should toContain matcher', function() {
-        const calculator = new Calculator();
+      it('should toContain matcher', function() { 
         let arr = [1,2,3,4];
         expect(arr).toContain(4);
         expect(calculator.constructor.name).toContain('Cal');
@@ -101,7 +104,6 @@ describe('Calculator.js', function() {
 
       //toBeNaN()
       it('should toBeNaN matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         calculator.multiply('a');
         expect(calculator.total).toBeNaN();
@@ -109,7 +111,6 @@ describe('Calculator.js', function() {
 
       //toThrow() 
       it('should toThrow matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         // expect(function() { calculator.divide(0) }).toThrow();
         expect(function() { calculator.divide(0);}).toThrow(new Error('Number cannot be 0'));
@@ -117,7 +118,6 @@ describe('Calculator.js', function() {
 
       //toThrowError() 
       it('should toThrowError matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         expect(function() { calculator.divide(0) }).toThrowError();
         expect(function() { calculator.divide(0) }).toThrowError(ArithmeticError, 'Number cannot be 0');
@@ -126,7 +126,6 @@ describe('Calculator.js', function() {
     
       //toMatch(regex) 
       it('should toMatch matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         calculator.add(10);
         expect(calculator.total).toMatch(/-?\d+/);
@@ -137,14 +136,12 @@ describe('Calculator.js', function() {
     describe('Jasmine.anything matchers', function() { 
       //jasmine.anything() 
       it('should anything matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         expect(calculator.total).toEqual(jasmine.anything());
       });
     
       //jasmine.any(class) checks for types like class object, number, string
       it('should any matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         expect(calculator).toEqual(jasmine.any(Object));
         expect(calculator.total).toEqual(jasmine.any(Number));
@@ -152,7 +149,6 @@ describe('Calculator.js', function() {
     
        //jasmine.objectContaining({key: value}) checks for object keys and values.
        it('should objectContaining matcher', function() {
-        const calculator = new Calculator();
         calculator.total = 10;
         expect(calculator).toEqual(jasmine.objectContaining({total: 10}));
       });
@@ -162,7 +158,6 @@ describe('Calculator.js', function() {
       //CustomMatcher
       it('should test CustomMatcher', function() {
         jasmine.addMatchers(CustomMatcher);
-        const calculator = new Calculator();
         expect(calculator).toBeCalculator();
       });
     });  
