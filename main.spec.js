@@ -31,20 +31,19 @@ describe("main.js", function () {
 
   });
 
-  describe("updateResult()", function () {
+  describe("updateResult()",() => {
     let element;
-    beforeAll(function () {
+    beforeAll(() => {
       element = document.createElement('div');
       element.setAttribute('id', 'result');
       document.body.appendChild(element);
     });
 
-    afterAll(function () {
-      const element = document.getElementById('result');
+    afterAll(() => {
       document.body.removeChild(element);
     });
 
-    it("should show result to the DOM", function () {
+    it("should show result to the DOM", () => {
       updateResult('5');
       expect(element.innerHTML).toBe('5');
     });
