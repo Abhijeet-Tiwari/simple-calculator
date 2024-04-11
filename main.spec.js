@@ -1,8 +1,22 @@
 describe("main.js", function () {
   
-  describe("main()", function () {
-    it("should validate expression", function () {
+  describe("calculate()", function () {
+    it("should validate expression if first number is invalid", function () {
+      spyOn(window,'updateResult').and.stub();
+      calculate('a+3');
+      expect(window.updateResult).toHaveBeenCalled();
+    });
 
+    it("should validate expression if second number is invalid", function () {
+      spyOn(window,'updateResult').and.stub();
+      calculate('3+a');
+      expect(window.updateResult).toHaveBeenCalled();
+    });
+
+    it("should validate expression if operator is invalid", function () {
+      spyOn(window,'updateResult').and.stub();
+      calculate('2=5');
+      expect(window.updateResult).toHaveBeenCalled();
     });
 
     it("should validate add", function () {
